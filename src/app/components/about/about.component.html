@@ -1,0 +1,15 @@
+<div>
+  <div *ngIf="data" class="AboutContainer" [attr.key]="data[0].id">
+    <div class="AboutTextContainer">
+      <p>
+        My name is Thomas Kraak, living in Amsterdam and {{ getAge("11-04-1987") }} years of age. I live together in an
+        apartment with my girlfriend and red cat Grover.
+      </p>
+      <p [innerHTML]="data[0].about"></p>
+    </div>
+
+    <div class="AboutImageContainer">
+      <img [src]="data[0].portrait" alt="portrait" />
+    </div>
+  </div>
+</div>

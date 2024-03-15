@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+* {
+    box-sizing: border-box;
+    font-family: "Raleway", sans-serif;
+  }
+  
+  :root {
+    --accent-color: #668051;
+    --accent-color2: #008b07;
+  }
+  
+  body {
+    min-height: 100vh;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    margin: 0;
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .App-Content {
+    min-height: calc(100vh - 5.6rem);
+  }
+  
+  h1 {
+    font-weight: 600;
+  }
+  
+  h2 {
+    font-weight: 600;
+  }
+  
+  a {
+    text-decoration: none;
+    color: black;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+  }
+  

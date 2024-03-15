@@ -1,0 +1,44 @@
+.CardContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  padding: 0.8rem;
+  background-color: white;
+  border: solid black 1px;
+  box-shadow: 10px 10px 5px var(--accent-color);
+  transition: box-shadow 0.5s;
+
+  .CardTitle {
+    display: flex;
+    justify-content: space-between;
+
+    a:hover {
+      text-decoration: none;
+    }
+  }
+
+  h1 {
+    margin-top: 0;
+  }
+
+  h2 {
+    color: var(--accent-color);
+    font-weight: 600;
+    margin-top: 0;
+  }
+
+  h3 {
+    font-weight: 600;
+    margin-top: 0;
+  }
+
+  p {
+    margin-top: 0;
+    line-height: 1.3rem;
+  }
+}
+
+.CardContainer:hover {
+  box-shadow: 10px 10px 5px grey;
+}
