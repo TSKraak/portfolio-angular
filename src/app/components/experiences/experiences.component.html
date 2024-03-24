@@ -1,0 +1,17 @@
+<div class="ExperienceContainer">
+  @for (dat of data; track dat) {
+    <div class="ExpData" key="{dat.company}">
+      <div class="ExpText">
+        <h2 class="ExpTitle">{{ dat.title }}</h2>
+        <div>
+          <h3 class="ExpCompany">{{ dat.company }}</h3>
+          <p class="ExpPeriod">{{ dat.period }}</p>
+        </div>
+        <p class="ExpDescription" [innerHTML]="dat.description"></p>
+      </div>
+      @if (dat.logo) {
+        <img class="ExpLogo" [src]="dat.logo" [alt]="dat.company" />
+      }
+    </div>
+  }
+</div>

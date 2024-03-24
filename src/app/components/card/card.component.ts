@@ -9,14 +9,4 @@ import { Component, Input } from "@angular/core";
 })
 export class CardComponent {
   @Input() type: string;
-
-  @Input() data: {
-    project: string;
-    image: string;
-    company: string;
-    description: string;
-    url: string;
-    createdAt: string;
-    updatedAt: string;
-  }[];
 }

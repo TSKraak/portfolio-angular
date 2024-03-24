@@ -1,0 +1,52 @@
+.ProjectsContainer {
+  display: flex;
+  flex-direction: column;
+
+  .AlignImageLeft {
+    display: flex;
+    flex-direction: row;
+    padding: 0.8rem 0;
+    border-top: solid gray 1px;
+
+    .TextContainer {
+      display: flex;
+      flex-direction: column;
+      width: 60%;
+      margin-right: 2rem;
+    }
+  }
+
+  .AlignImageRight {
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0.8rem 0;
+    border-top: solid gray 1px;
+
+    .TextContainer {
+      display: flex;
+      flex-direction: column;
+      width: 60%;
+      margin-left: 2rem;
+    }
+  }
+
+  .ImageContainer {
+    align-items: center;
+    width: 40%;
+    display: flex;
+    justify-content: center;
+
+    img {
+      min-width: 100%;
+      object-fit: cover;
+      transition: 2s;
+      overflow: hidden;
+      box-shadow: 0px 0px 10px var(--accent-color);
+      border-radius: 0.8rem;
+    }
+  }
+
+  .ImageContainer:hover img {
+    transform: scale(1.02);
+  }
+}

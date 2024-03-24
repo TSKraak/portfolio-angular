@@ -1,0 +1,21 @@
+<div class="ProjectsContainer">
+  @for (dat of data; track dat; let i = $index) {
+    <div [ngClass]="[i === 0 || i % 2 === 0 ? 'AlignImageLeft' : 'AlignImageRight']" key="{dat.id}">
+      <div class="TextContainer">
+        <h2>{{ dat.project }}</h2>
+        <h3>{{ dat.company }}</h3>
+        <p [innerHTML]="dat.description"></p>
+        @if (dat.url) {
+          <p>
+            <a href="{dat.url}" target="_blank" rel="noreferrer"> Click here to see the live website </a>
+          </p>
+        }
+      </div>
+      <div class="ImageContainer">
+        @if (dat.image) {
+          <img class="ProjectImage" [src]="dat.image" [alt]="dat.company" />
+        }
+      </div>
+    </div>
+  }
+</div>

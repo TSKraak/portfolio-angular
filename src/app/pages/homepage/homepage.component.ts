@@ -1,18 +1,19 @@
-import { Component, Inject, Input, OnInit, PLATFORM_ID, StateKey, TransferState, makeStateKey } from "@angular/core";
+import { Component, Input, OnInit, StateKey, TransferState, makeStateKey } from "@angular/core";
+import { AboutComponent } from "../../components/about/about.component";
 import { CardComponent } from "../../components/card/card.component";
 import { ApiService } from "../../services/api.service";
-import { AboutComponent } from "../../components/about/about.component";
+import { ProjectsComponent } from "../../components/projects/projects.component";
+import { ExperiencesComponent } from "../../components/experiences/experiences.component";
 
 @Component({
   selector: "homepage",
   standalone: true,
-  imports: [CardComponent, AboutComponent],
+  imports: [CardComponent, AboutComponent, ProjectsComponent, ExperiencesComponent],
   templateUrl: "./homepage.component.html",
   styleUrl: "./homepage.component.scss"
 })
 export class HomepageComponent implements OnInit {
   constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
     private transferState: TransferState,
     private api: ApiService
   ) {}
@@ -25,7 +26,7 @@ export class HomepageComponent implements OnInit {
     updatedAt: string;
   }[];
 
-  @Input() projects: {
+  @Input() project: {
     project: string;
     image: string;
     company: string;
@@ -35,7 +36,7 @@ export class HomepageComponent implements OnInit {
     updatedAt: string;
   }[];
 
-  @Input() experiences: {
+  @Input() experience: {
     title: string;
     logo: string;
     company: string;
@@ -58,7 +59,7 @@ export class HomepageComponent implements OnInit {
     if (transferData) {
       this[dataType as keyof HomepageComponent] = transferData;
     } else {
-      this[dataType as keyof HomepageComponent] = await this.api.fetchData("about");
+      this[dataType as keyof HomepageComponent] = await this.api.fetchData(dataType);
       this.transferState.set(stateKey, this[dataType as keyof HomepageComponent]);
     }
   }

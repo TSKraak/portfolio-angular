@@ -1,7 +1,13 @@
 <div class="HomePageContainer">
-  <div class="homeBackground"></div>
-  <div class="homeBackdrop"></div>
-  <card type="Projects" [data]="projects">
+  <div class="HomeBackground"></div>
+  <div class="HomeBackdrop"></div>
+  <card type="About me">
     <about [data]="about"></about>
+  </card>
+  <card type="Projects">
+    <projects [data]="project"></projects>
+  </card>
+  <card type="Experiences">
+    <experiences [data]="experience"></experiences>
   </card>
 </div>

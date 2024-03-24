@@ -5,7 +5,7 @@ import { Injectable } from "@angular/core";
 })
 export class ApiService {
   async fetchData(dataType: string): Promise<any> {
-    return fetch(`http://localhost:4000/${dataType}`)
+    return fetch(`http://localhost:4500/${dataType}`)
       .then(response => {
         return response.json();
       })
