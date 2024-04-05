@@ -5,14 +5,14 @@
   </div>
   <div class="NBMenu">
     <div class="NBMenuItems">
-      <a href="/">Portfolio</a>
-      <a href="/travel">Travel</a>
-      <a href="/hobbies">Hobbies</a>
-      <a href="/contact">Contact</a>
+      <a routerLink="" routerLinkActive="active" ariaCurrentWhenActive="page">Portfolio</a>
+      <a routerLink="travel" routerLinkActive="active" ariaCurrentWhenActive="page">Travel</a>
+      <a routerLink="hobbies" routerLinkActive="active" ariaCurrentWhenActive="page">Hobbies</a>
+      <a routerLink="contact" routerLinkActive="active" ariaCurrentWhenActive="page">Contact</a>
     </div>
   </div>
   <div class="NBAdmin">
-    <a href="/admin">Admin</a>
+    <a routerLink="admin" routerLinkActive="active" ariaCurrentWhenActive="page">Admin</a>
     @if (token) {
       <button (click)="handleLogout()">Logout</button>
     }

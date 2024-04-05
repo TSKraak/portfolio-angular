@@ -2,12 +2,12 @@ import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { SsrCookieService } from "ngx-cookie-service-ssr";
 import { Subscription } from "rxjs";
 import { TokenService } from "../../services/token.service";
-import { Router } from "@angular/router";
+import { Router, RouterLink, RouterLinkActive, RouterOutlet } from "@angular/router";
 
 @Component({
   selector: "navbar",
   standalone: true,
-  imports: [],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: "./navbar.component.html",
   styleUrl: "./navbar.component.scss"
 })
