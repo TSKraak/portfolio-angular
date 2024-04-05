@@ -1,14 +1,19 @@
-import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from "@angular/common";
+import { Component } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
+import { SsrCookieService } from "ngx-cookie-service-ssr";
+import { NavbarComponent } from "./components/navbar/navbar.component";
+import { TokenService } from "./services/token.service";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   standalone: true,
-  imports: [CommonModule, RouterOutlet],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  imports: [CommonModule, RouterOutlet, NavbarComponent],
+  providers: [SsrCookieService, TokenService],
+  templateUrl: "./app.component.html",
+  styleUrl: "./app.component.scss"
 })
 export class AppComponent {
-  title = 'portfolio-angular';
+  title = "Kraak Portfolio";
+  token: string;
 }

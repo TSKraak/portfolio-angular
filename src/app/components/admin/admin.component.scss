@@ -1,0 +1,40 @@
+.loginForm {
+  width: 20rem;
+  display: flex;
+  flex-direction: column;
+
+  .usernameField,
+  .passwordField {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.3rem;
+
+    span {
+      background-color: white;
+      padding: 0.2rem;
+    }
+
+    input {
+      width: 10rem;
+      align-self: flex-end;
+    }
+  }
+
+  button {
+    font-size: 1rem;
+    width: 4rem;
+    align-self: flex-end;
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+}
+
+.addButtons {
+  margin-bottom: 1rem;
+
+  .addProjectButton {
+    margin-right: 2rem;
+  }
+}

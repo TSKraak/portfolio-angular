@@ -1,0 +1,20 @@
+<div class="NavBar">
+  <div class="NBTitle">
+    <h1>Thomas Kraak</h1>
+    <h3>Full-stack developer</h3>
+  </div>
+  <div class="NBMenu">
+    <div class="NBMenuItems">
+      <a href="/">Portfolio</a>
+      <a href="/travel">Travel</a>
+      <a href="/hobbies">Hobbies</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </div>
+  <div class="NBAdmin">
+    <a href="/admin">Admin</a>
+    @if (token) {
+      <button (click)="handleLogout()">Logout</button>
+    }
+  </div>
+</div>

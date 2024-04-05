@@ -1,0 +1,15 @@
+@if (!token) {
+  <div>
+    <form class="loginForm">
+      <label class="usernameField">
+        <span>Username:</span>
+        <input type="text" [value]="" (change)="setData($event, 'username')" />
+      </label>
+      <label class="passwordField">
+        <span>Password:</span>
+        <input type="password" [value]="" (change)="setData($event, 'password')" />
+      </label>
+      <button class="loginButton" type="submit" (click)="[submitForm($event)]">Login</button>
+    </form>
+  </div>
+}

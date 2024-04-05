@@ -1,0 +1,89 @@
+.NavBar {
+    padding: 0 0.5rem;
+    height: 5rem;
+    width: 100%;
+    text-align: center;
+    position: sticky;
+    top: 0px;
+    background-color: var(--accent-color);
+    z-index: 100;
+    border-bottom: solid black 1px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  
+    .NBTitle {
+      width: 13.6rem;
+      h1 {
+        color: #f2f2f2;
+        font-weight: 600;
+        text-shadow: 3px 3px 10px black;
+        margin: 0;
+      }
+      h3 {
+        color: #f2f2f2;
+        font-weight: 400;
+        text-shadow: 3px 3px 10px black;
+        margin: 0;
+      }
+    }
+  
+    .NBMenu {
+      align-self: center;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+  
+      a {
+        font-size: 1.3rem;
+        text-decoration: none;
+        color: #f2f2f2;
+        margin: 0 2rem;
+      }
+  
+      a:hover {
+        text-decoration: underline;
+        color: #f2f2f2;
+      }
+    }
+  
+    .NBAdmin {
+      display: flex;
+      flex-direction: row-reverse;
+      width: 13.6rem;
+  
+      a {
+        align-self: flex-end;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: black;
+        border: solid 1px black;
+        border-radius: 0.3rem;
+        padding: 0.3rem;
+        background-color: rgb(170, 170, 170);
+      }
+  
+      a:hover {
+        background-color: rgb(150, 150, 150);
+      }
+  
+      button {
+        align-self: flex-end;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-decoration: none;
+        color: black;
+        border: solid 1px black;
+        border-radius: 0.3rem;
+        padding: 0.3rem;
+        margin-right: 0.3rem;
+        background-color: rgb(170, 170, 170);
+      }
+  
+      button:hover {
+        background-color: rgb(150, 150, 150);
+      }
+    }
+  }
+  
