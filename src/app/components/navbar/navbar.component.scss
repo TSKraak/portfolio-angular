@@ -79,6 +79,10 @@
         padding: 0.3rem;
         margin-right: 0.3rem;
         background-color: rgb(170, 170, 170);
+
+        &:hover {
+          cursor: pointer;
+        }
       }
   
       button:hover {

@@ -1,93 +1,73 @@
-import { Component, OnInit, StateKey, TransferState, makeStateKey } from "@angular/core";
+import { Component, Inject, OnInit, PLATFORM_ID } from "@angular/core";
 import { SsrCookieService } from "ngx-cookie-service-ssr";
 import { TokenService } from "../../services/token.service";
+import { ApiService } from "../../services/api.service";
+import { ReactiveFormsModule, FormBuilder, Validators, FormGroup, FormControl, AbstractControl } from "@angular/forms";
+import { isPlatformBrowser } from "@angular/common";
 
 @Component({
   selector: "admin",
   standalone: true,
-  imports: [],
+  imports: [ReactiveFormsModule],
   templateUrl: "./admin.component.html",
   styleUrl: "./admin.component.scss"
 })
 export class AdminComponent implements OnInit {
   constructor(
     private cookieService: SsrCookieService,
+    private fb: FormBuilder,
     private tokenService: TokenService,
-    private transferState: TransferState
+    private api: ApiService,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   token: string;
   username: string;
   password: string;
+  submitted: boolean;
+
+  form: FormGroup = new FormGroup({
+    username: new FormControl(""),
+    password: new FormControl("")
+  });
+
+  get f(): { [key: string]: AbstractControl } {
+    return this.form.controls;
+  }
 
   ngOnInit(): void {
     this.checkToken();
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.form = this.fb.group({
+        username: ["", [Validators.required, Validators.pattern("^(?!\\s+$)[a-zA-Z .\\-'()`\u00C0-\u017F]*$")]],
+        password: ["", [Validators.required, Validators.pattern("^(?!\\s+$)[a-zA-Z .\\-'()`\u00C0-\u017F]*$")]]
+      });
+    }
   }
 
-  checkToken = async () => {
+  async checkToken() {
     this.token = this.cookieService.get("token");
 
     if (this.token) {
-      try {
-        const response = await fetch(`http://localhost:4500/me`, {
-          headers: { Authorization: `Bearer ${this.token}` }
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch");
-        }
-
-        this.cookieService.set("token", this.token);
-      } catch (error: any) {
-        if (error.response) {
-          console.log("ERROR:", error.response.message);
-        } else {
-          console.log("ERROR:", error);
-        }
-        // if we get a 4xx or 5xx response, get rid of the token by logging out
+      const validToken = await this.api.checkToken(this.token);
+      if (!validToken) {
         this.token = "";
         this.cookieService.delete("token");
       }
     }
-  };
+  }
 
-  submitForm = async (event: Event) => {
+  async submitForm(event: Event) {
     event.preventDefault();
+    this.submitted = true;
+    if (this.form.invalid) return;
 
-    try {
-      const user = {
-        username: this.username,
-        password: this.password
-      };
+    this.token = await this.api.fetchToken(this.username, this.password);
 
-      const response: any = await fetch(`http://localhost:4500/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(user)
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to fetch");
-      }
-
-      const responseData = await response.json();
-
-      this.token = responseData.token;
-
-      const tokenKey: StateKey<any> = makeStateKey<any>("token");
-      this.transferState.set(tokenKey, this.token);
-      this.tokenService.emitToken(this.token);
-      this.cookieService.set("token", this.token);
-    } catch (error: any) {
-      if (error.response) {
-        console.log(error.response.data.message);
-      } else {
-        console.log(error.message);
-      }
-    }
-  };
+    this.tokenService.emitToken(this.token);
+    this.cookieService.set("token", this.token);
+  }
 
   setData(event: any, type: string) {
     type === "username" ? (this.username = event.target.value) : (this.password = event.target.value);

@@ -1,13 +1,19 @@
 @if (!token) {
   <div>
-    <form class="loginForm">
+    <form class="loginForm" [formGroup]="form">
       <label class="usernameField">
         <span>Username:</span>
-        <input type="text" [value]="" (change)="setData($event, 'username')" />
+        <input type="text" [value]="" formControlName="username" (change)="setData($event, 'username')" />
+        @if (submitted && f["username"].errors) {
+          <span class="invalid">Enter your username</span>
+        }
       </label>
       <label class="passwordField">
         <span>Password:</span>
-        <input type="password" [value]="" (change)="setData($event, 'password')" />
+        <input type="password" [value]="" formControlName="password" (change)="setData($event, 'password')" />
+        @if (submitted && f["password"].errors) {
+          <span class="invalid">Enter your password</span>
+        }
       </label>
       <button class="loginButton" type="submit" (click)="[submitForm($event)]">Login</button>
     </form>

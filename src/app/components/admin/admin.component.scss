@@ -29,6 +29,13 @@
   button:hover {
     cursor: pointer;
   }
+
+  .invalid {
+    font-size: 14px;
+    color: red;
+    position: absolute;
+    margin-left: 21rem;
+  }
 }
 
 .addButtons {
