@@ -1,0 +1,14 @@
+.ContactTypes {
+  display: flex;
+  justify-content: space-between;
+
+  a {
+    display: flex;
+    align-items: center;
+
+    img {
+      height: 2rem;
+      margin-right: 0.5rem;
+    }
+  }
+}

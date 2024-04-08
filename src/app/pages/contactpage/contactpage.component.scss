@@ -1,0 +1,22 @@
+.contactBackground {
+  background-image: url(../../images/contactbg.jpg);
+  background-size: cover;
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: -2;
+  width: 100vw;
+  height: 100vh;
+}
+
+.contactBackdrop {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.1);
+}
