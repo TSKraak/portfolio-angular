@@ -14,6 +14,4 @@ import { TokenService } from "./services/token.service";
   styleUrl: "./app.component.scss"
 })
 export class AppComponent {
-  title = "Kraak Portfolio";
-  token: string;
 }
