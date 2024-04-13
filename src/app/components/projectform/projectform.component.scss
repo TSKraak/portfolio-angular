@@ -1,0 +1,47 @@
+.ProjectFormContainer {
+  .ProjectForm {
+    display: flex;
+    flex-direction: column;
+
+    .FieldContainer {
+      display: flex;
+      align-items: center;
+      margin: 0.5rem 0;
+      label {
+        width: 15%;
+      }
+      input {
+        width: 80%;
+        height: 2rem;
+      }
+      textarea {
+        resize: vertical;
+        width: 80%;
+      }
+    }
+
+    .ImagePreview {
+      margin: 0.5rem 0 0 0;
+
+      &text {
+        font-size: 0.8rem;
+        margin: 0;
+      }
+      
+      &__image {
+        margin-bottom: 0.5rem;
+        width: 10rem;
+      }
+    }
+  }
+
+  .SubmitProjectButton {
+    margin-left: 15%;
+  }
+
+  .SubmitProjectSucces {
+    text-align: center;
+    margin-top: 2rem;
+    color: var(--accent-color2);
+  }
+}

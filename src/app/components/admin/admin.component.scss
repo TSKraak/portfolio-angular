@@ -39,9 +39,23 @@
 }
 
 .addButtons {
-  margin-bottom: 1rem;
+  button {
+    margin-bottom: 1rem;
+    font-weight: bold;
+    font-size: 1rem;
+    width: 8rem;
+    background-color: var(--button-color);
+    border: solid 2px var(--accent-color2);
+    border-radius: 8px;
+    height: 2rem;
+  }
 
-  .addProjectButton {
+  button:hover {
+    cursor: pointer;
+    background-color: var(--accent-color2);
+  }
+
+  &__project {
     margin-right: 2rem;
   }
 }

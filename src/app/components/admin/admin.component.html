@@ -3,14 +3,14 @@
     <form class="loginForm" [formGroup]="form">
       <label class="usernameField">
         <span>Username:</span>
-        <input type="text" [value]="" formControlName="username" (change)="setData($event, 'username')" />
+        <input type="text" formControlName="username" (change)="setCredentials('username')" />
         @if (submitted && f["username"].errors) {
           <span class="invalid">Enter your username</span>
         }
       </label>
       <label class="passwordField">
         <span>Password:</span>
-        <input type="password" [value]="" formControlName="password" (change)="setData($event, 'password')" />
+        <input type="password" formControlName="password" (change)="setCredentials('password')" />
         @if (submitted && f["password"].errors) {
           <span class="invalid">Enter your password</span>
         }
@@ -18,4 +18,20 @@
       <button class="loginButton" type="submit" (click)="[submitForm($event)]">Login</button>
     </form>
   </div>
+}
+
+@if (token) {
+  <div class="addButtons">
+    <button class="addButtons__project" (click)="setAddData('project')">Add Project</button>
+    <button class="addButtons__experience" (click)="setAddData('experience')">Add Experience</button>
+  </div>
+}
+
+@if(formType === 'project') {
+  <projectform />
+}
+
+@if(formType === 'experience') {
+  <div>Hello experience</div>
+
 }

@@ -1,0 +1,45 @@
+<div>
+  <h2>Add a new project</h2>
+  <div class="ProjectFormContainer">
+    <form class="ProjectForm" [formGroup]="form">
+      <div class="FieldContainer">
+        <label>Project *</label>
+        <input required type="text" formControlName="project" id="project" (change)="setData('project')" />
+      </div>
+      <div class="FieldContainer">
+        <label>Image</label>
+        <input type="text" formControlName="image" id="image" [value]="image" (change)="setData('image')" />
+      </div>
+      <imageuploader (imageEmit)="supplyImageUrl($event)" />
+      @if (projectData?.image) {
+        <div class="ImagePreview">
+          <p class="ImagePreview__text">Image preview:</p>
+          <img class="ImagePreview__image" [src]="projectData.image" alt="profile pic" />
+        </div>
+      }
+
+      <div class="FieldContainer">
+        <label>Company *</label>
+        <input required type="text" formControlName="company" id="company" (change)="setData('company')" />
+      </div>
+      <div class="FieldContainer">
+        <label>Description *</label>
+        <textarea
+          required
+          rows="5"
+          type="text"
+          formControlName="description"
+          id="description"
+          (change)="setData('description')"></textarea>
+      </div>
+      <div class="FieldContainer">
+        <label>Website URL</label>
+        <input type="text" formControlName="url" id="url" (change)="setData('url')" />
+      </div>
+    </form>
+    <button class="SubmitProjectButton" value="submit" (click)="submitForm($event)">Submit</button>
+    @if (postSuccess) {
+      <h3 class="SubmitProjectSucces">Project submitted successful.</h3>
+    }
+  </div>
+</div>

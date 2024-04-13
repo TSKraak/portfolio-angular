@@ -4,11 +4,12 @@ import { TokenService } from "../../services/token.service";
 import { ApiService } from "../../services/api.service";
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup, FormControl, AbstractControl } from "@angular/forms";
 import { isPlatformBrowser } from "@angular/common";
+import { ProjectformComponent } from "../projectform/projectform.component";
 
 @Component({
   selector: "admin",
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ProjectformComponent],
   templateUrl: "./admin.component.html",
   styleUrl: "./admin.component.scss"
 })
@@ -25,6 +26,7 @@ export class AdminComponent implements OnInit {
   username: string;
   password: string;
   submitted: boolean;
+  formType: string;
 
   form: FormGroup = new FormGroup({
     username: new FormControl(""),
@@ -69,7 +71,11 @@ export class AdminComponent implements OnInit {
     this.cookieService.set("token", this.token);
   }
 
-  setData(event: any, type: string) {
-    type === "username" ? (this.username = event.target.value) : (this.password = event.target.value);
+  setCredentials(type: string) {
+    type === "username" ? (this.username = this.form.value.username) : (this.password = this.form.value.password);
+  }
+
+  setAddData(type: string) {
+    this.formType = type;
   }
 }
