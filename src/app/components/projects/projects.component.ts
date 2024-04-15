@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input, OnChanges, OnInit } from "@angular/core";
+import { ProjectData } from "../../interfaces/interfaces";
 
 @Component({
   selector: "projects",
@@ -9,15 +10,7 @@ import { Component, Input, OnChanges, OnInit } from "@angular/core";
   styleUrl: "./projects.component.scss"
 })
 export class ProjectsComponent implements OnChanges {
-  @Input() data: {
-    project: string;
-    image: string;
-    company: string;
-    description: string;
-    url: string;
-    createdAt: string;
-    updatedAt: string;
-  }[];
+  @Input() data: ProjectData[];
 
   ngOnChanges(): void {
     if (this.data) this.data = this.data.reverse();

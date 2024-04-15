@@ -65,7 +65,7 @@ export class AdminComponent implements OnInit {
     this.submitted = true;
     if (this.form.invalid) return;
 
-    this.token = await this.api.fetchToken(this.username, this.password);
+    this.token = await this.api.fetchToken(this.form.value);
 
     this.tokenService.emitToken(this.token);
     this.cookieService.set("token", this.token);

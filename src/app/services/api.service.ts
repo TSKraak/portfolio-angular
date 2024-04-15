@@ -1,52 +1,29 @@
 import { Injectable } from "@angular/core";
-import { SsrCookieService } from "ngx-cookie-service-ssr";
-import { TokenService } from "./token.service";
+import { AboutData, ExperienceData, ProjectData } from "../interfaces/interfaces";
 
 @Injectable({
   providedIn: "root"
 })
 export class ApiService {
-  async fetchData(dataType: string): Promise<any> {
-    return fetch(`http://localhost:4500/${dataType}`)
-      .then(response => {
-        return response.json();
-      })
-      .catch((error: any) => {
-        console.error("Error fetching IP data:", error);
-        return "error";
-      });
-  }
-
-  async fetchToken(username: string, password: string): Promise<string> {
+  async fetchToken(credentials: any): Promise<string> {
     try {
-      const user = {
-        username: username,
-        password: password
-      };
-
       const response: any = await fetch(`http://localhost:4500/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify(user)
+        body: JSON.stringify(credentials)
       });
 
       if (!response.ok) {
-        throw new Error("Failed to fetch");
+        throw new Error("Failed to login and fetch token");
       }
 
       const responseData = await response.json();
-
       return responseData.token;
     } catch (error: any) {
-      if (error.response) {
-        console.log(error.response.data.message);
-        return "";
-      } else {
-        console.log(error.message);
-        return "";
-      }
+      console.log(error);
+      return "";
     }
   }
 
@@ -62,10 +39,42 @@ export class ApiService {
 
       return true;
     } catch (error: any) {
+      console.log(error);
+      return false;
+    }
+  }
 
-        console.log("ERROR:", error);
-        return false;
+  async fetchData(dataType: string): Promise<any> {
+    try {
+      const response = await fetch(`http://localhost:4500/${dataType}`);
+      return response.json();
+    } catch (error: any) {
+      console.error("Error fetching data:", error);
+      return null;
+    }
+  }
 
+  async postNewData(
+    token: string,
+    type: string,
+    data: ProjectData | ExperienceData
+  ): Promise<ProjectData | ExperienceData | null> {
+    try {
+      const response = await fetch(`http://localhost:4500/${type}`, {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+        body: JSON.stringify(data)
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to post data");
+      }
+
+      const responseData = await response.json();
+      return responseData;
+    } catch (error: any) {
+      console.log(error);
+      return null;
     }
   }
 }

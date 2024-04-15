@@ -20,14 +20,7 @@ export class ProjectformComponent {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
-  projectData: {
-    project: string;
-    image: string;
-    company: string;
-    description: string;
-    url: string;
-  };
-
+  submitted: boolean;
   postSuccess: boolean;
   token: string;
   image: string;
@@ -51,26 +44,33 @@ export class ProjectformComponent {
         image: [""],
         company: ["", [Validators.required, Validators.pattern("^(?!\\s+$)[a-zA-Z .\\-'()`\u00C0-\u017F]*$")]],
         description: ["", [Validators.required, Validators.pattern("^(?!\\s+$)[a-zA-Z .\\-'()`\u00C0-\u017F]*$")]],
-        url: ["", [Validators.required]]
+        url: [""]
       });
     }
   }
 
-  setData(type: string) {
-    console.log(type);
-    console.log(this.form.value, type);
+  setData() {
+    this.image = this.form.value.image;
   }
 
   supplyImageUrl(image: string) {
-    console.log("Hello", image);
     this.image = image;
   }
 
   async submitForm(event: any) {
     event.preventDefault();
+    this.submitted = true;
+
+    if (this.form.invalid) return;
+
     this.token = this.cookieService.get("token");
 
-    // POST call to API
-    this.postSuccess = true;
+    const newProject = await this.api.postNewData(this.token, "project", this.form.value);
+
+    if (await newProject) {
+      this.form.reset();
+      this.postSuccess = true;
+      this.submitted = false;
+    }
   }
 }

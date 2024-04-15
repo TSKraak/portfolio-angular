@@ -2,44 +2,50 @@
   <h2>Add a new project</h2>
   <div class="ProjectFormContainer">
     <form class="ProjectForm" [formGroup]="form">
+      @if (submitted && f["project"].errors) {
+        <p class="invalid">Enter project name</p>
+      }
       <div class="FieldContainer">
         <label>Project *</label>
-        <input required type="text" formControlName="project" id="project" (change)="setData('project')" />
+        <input required type="text" formControlName="project" id="project" />
       </div>
+
       <div class="FieldContainer">
         <label>Image</label>
-        <input type="text" formControlName="image" id="image" [value]="image" (change)="setData('image')" />
+        <input type="text" formControlName="image" id="image" [value]="image" (change)="setData()" />
       </div>
+
       <imageuploader (imageEmit)="supplyImageUrl($event)" />
-      @if (projectData?.image) {
+      @if (image) {
         <div class="ImagePreview">
           <p class="ImagePreview__text">Image preview:</p>
-          <img class="ImagePreview__image" [src]="projectData.image" alt="profile pic" />
+          <img class="ImagePreview__image" [src]="image" alt="profile pic" />
         </div>
       }
 
+      @if (submitted && f["company"].errors) {
+        <p class="invalid">Enter company name</p>
+      }
       <div class="FieldContainer">
         <label>Company *</label>
-        <input required type="text" formControlName="company" id="company" (change)="setData('company')" />
+        <input required type="text" formControlName="company" id="company" />
       </div>
+
+      @if (submitted && f["description"].errors) {
+        <p class="invalid">Enter description</p>
+      }
       <div class="FieldContainer">
         <label>Description *</label>
-        <textarea
-          required
-          rows="5"
-          type="text"
-          formControlName="description"
-          id="description"
-          (change)="setData('description')"></textarea>
+        <textarea required rows="5" type="text" formControlName="description" id="description"></textarea>
       </div>
       <div class="FieldContainer">
         <label>Website URL</label>
-        <input type="text" formControlName="url" id="url" (change)="setData('url')" />
+        <input type="text" formControlName="url" id="url" />
       </div>
     </form>
     <button class="SubmitProjectButton" value="submit" (click)="submitForm($event)">Submit</button>
     @if (postSuccess) {
-      <h3 class="SubmitProjectSucces">Project submitted successful.</h3>
+      <h3 class="SubmitProjectSucces">Project added successfully.</h3>
     }
   </div>
 </div>

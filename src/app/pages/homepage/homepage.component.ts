@@ -4,6 +4,7 @@ import { CardComponent } from "../../components/card/card.component";
 import { ApiService } from "../../services/api.service";
 import { ProjectsComponent } from "../../components/projects/projects.component";
 import { ExperiencesComponent } from "../../components/experiences/experiences.component";
+import { AboutData, ExperienceData, ProjectData } from "../../interfaces/interfaces";
 
 @Component({
   selector: "homepage",
@@ -18,33 +19,11 @@ export class HomepageComponent implements OnInit {
     private api: ApiService
   ) {}
 
-  @Input() about: {
-    id: number;
-    about: string;
-    portrait: string;
-    createdAt: string;
-    updatedAt: string;
-  }[];
+  @Input() about: AboutData[];
 
-  @Input() project: {
-    project: string;
-    image: string;
-    company: string;
-    description: string;
-    url: string;
-    createdAt: string;
-    updatedAt: string;
-  }[];
+  @Input() project: ProjectData[];
 
-  @Input() experience: {
-    title: string;
-    logo: string;
-    company: string;
-    period: string;
-    description: string;
-    createdAt: string;
-    updatedAt: string;
-  }[];
+  @Input() experience: ExperienceData[];
 
   ngOnInit(): void {
     this.transferStateData("about");

@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { Component, Input } from "@angular/core";
+import { AboutData } from "../../interfaces/interfaces";
 
 @Component({
   selector: "about",
@@ -9,13 +10,7 @@ import { Component, Input } from "@angular/core";
   styleUrl: "./about.component.scss"
 })
 export class AboutComponent {
-  @Input() data: {
-    id: number;
-    about: string;
-    portrait: string;
-    createdAt: string;
-    updatedAt: string;
-  }[];
+  @Input() data: AboutData[];
 
   getAge(date: string) {
     var today = new Date();
