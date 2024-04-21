@@ -1,5 +1,5 @@
-.ProjectFormContainer {
-  .ProjectForm {
+.ExperienceFormContainer {
+  .ExperienceForm {
     display: flex;
     flex-direction: column;
 
@@ -23,7 +23,7 @@
       }
     }
 
-    .ImagePreview {
+    .LogoPreview {
       margin: 0.5rem 0 0 15%;
 
       &__text {
@@ -31,18 +31,18 @@
         margin: 0;
       }
 
-      &__image {
+      &__logo {
         margin-bottom: 0.5rem;
         width: 10rem;
       }
     }
   }
 
-  .SubmitProjectButton {
+  .SubmitExperienceButton {
     margin-left: 15%;
   }
 
-  .SubmitProjectSucces {
+  .SubmitExperienceSucces {
     text-align: center;
     margin-top: 2rem;
     color: var(--accent-color2);

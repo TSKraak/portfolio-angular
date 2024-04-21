@@ -1,15 +1,16 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from "@angular/core";
-import { SsrCookieService } from "ngx-cookie-service-ssr";
-import { TokenService } from "../../services/token.service";
-import { ApiService } from "../../services/api.service";
-import { ReactiveFormsModule, FormBuilder, Validators, FormGroup, FormControl, AbstractControl } from "@angular/forms";
 import { isPlatformBrowser } from "@angular/common";
+import { Component, Inject, OnInit, PLATFORM_ID } from "@angular/core";
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { SsrCookieService } from "ngx-cookie-service-ssr";
+import { ApiService } from "../../services/api.service";
+import { TokenService } from "../../services/token.service";
+import { ExperienceformComponent } from "../experienceform/experienceform.component";
 import { ProjectformComponent } from "../projectform/projectform.component";
 
 @Component({
   selector: "admin",
   standalone: true,
-  imports: [ReactiveFormsModule, ProjectformComponent],
+  imports: [ReactiveFormsModule, ProjectformComponent, ExperienceformComponent],
   templateUrl: "./admin.component.html",
   styleUrl: "./admin.component.scss"
 })

@@ -62,12 +62,12 @@ export class ApiService {
     try {
       const response = await fetch(`http://localhost:4500/${type}`, {
         method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
+        headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
         body: JSON.stringify(data)
       });
 
       if (!response.ok) {
-        throw new Error("Failed to post data");
+        throw new Error(`Failed to post ${type} data`);
       }
 
       const responseData = await response.json();

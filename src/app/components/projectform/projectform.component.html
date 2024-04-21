@@ -7,7 +7,7 @@
       }
       <div class="FieldContainer">
         <label>Project *</label>
-        <input required type="text" formControlName="project" id="project" />
+        <input type="text" formControlName="project" id="project" />
       </div>
 
       <div class="FieldContainer">
@@ -19,7 +19,7 @@
       @if (image) {
         <div class="ImagePreview">
           <p class="ImagePreview__text">Image preview:</p>
-          <img class="ImagePreview__image" [src]="image" alt="profile pic" />
+          <img class="ImagePreview__image" [src]="image" alt="Project image" />
         </div>
       }
 
@@ -28,7 +28,7 @@
       }
       <div class="FieldContainer">
         <label>Company *</label>
-        <input required type="text" formControlName="company" id="company" />
+        <input type="text" formControlName="company" id="company" />
       </div>
 
       @if (submitted && f["description"].errors) {
@@ -36,7 +36,7 @@
       }
       <div class="FieldContainer">
         <label>Description *</label>
-        <textarea required rows="5" type="text" formControlName="description" id="description"></textarea>
+        <textarea rows="5" type="text" formControlName="description" id="description"></textarea>
       </div>
       <div class="FieldContainer">
         <label>Website URL</label>

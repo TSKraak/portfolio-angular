@@ -1,0 +1,55 @@
+<div>
+  <h2>Add a new experience</h2>
+  <div class="ExperienceFormContainer">
+    <form class="ExperienceForm" [formGroup]="form">
+      @if (submitted && f["title"].errors) {
+        <p class="invalid">Enter title</p>
+      }
+      <div class="FieldContainer">
+        <label>Title *</label>
+        <input type="text" formControlName="title" id="title" />
+      </div>
+      <div class="FieldContainer">
+        <label>Logo</label>
+        <input type="text" formControlName="logo" id="logo" [value]="logo" (change)="setData()" />
+      </div>
+
+      <imageuploader (imageEmit)="supplyLogoUrl($event)" />
+      @if (logo) {
+        <div class="LogoPreview">
+          <p class="LogoPreview__text">Logo preview:</p>
+          <img class="LogoPreview__logo" [src]="logo" alt="Project logo" />
+        </div>
+      }
+
+      @if (submitted && f["company"].errors) {
+        <p class="invalid">Enter company name</p>
+      }
+      <div class="FieldContainer">
+        <label>Company *</label>
+        <input required type="text" formControlName="company" id="company" />
+      </div>
+
+      @if (submitted && f["period"].errors) {
+        <p class="invalid">Enter period in format 'Jul 2020 - Feb 2021'</p>
+      }
+      <div class="FieldContainer">
+        <label>Period *</label>
+        <input required type="text" formControlName="period" id="period" />
+      </div>
+
+      @if (submitted && f["description"].errors) {
+        <p class="invalid">Enter description</p>
+      }
+      <div class="FieldContainer">
+        <label>Description *</label>
+        <textarea required rows="5" type="text" formControlName="description" id="description"></textarea>
+      </div>
+    </form>
+    <button class="SubmitExperienceButton" value="submit" (click)="submitForm($event)">Submit</button>
+
+    @if (postSuccess) {
+      <h3 class="SubmitExperienceSucces">Experience added successfully.</h3>
+    }
+  </div>
+</div>

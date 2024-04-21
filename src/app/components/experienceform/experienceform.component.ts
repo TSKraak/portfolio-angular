@@ -1,18 +1,18 @@
-import { Component, Inject, PLATFORM_ID, StateKey, TransferState, makeStateKey } from "@angular/core";
-import { ImageuploaderComponent } from "../imageuploader/imageuploader.component";
-import { SsrCookieService } from "ngx-cookie-service-ssr";
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
-import { ApiService } from "../../services/api.service";
 import { isPlatformBrowser } from "@angular/common";
+import { Component, Inject, PLATFORM_ID, StateKey, TransferState, makeStateKey } from "@angular/core";
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from "@angular/forms";
+import { SsrCookieService } from "ngx-cookie-service-ssr";
+import { ApiService } from "../../services/api.service";
+import { ImageuploaderComponent } from "../imageuploader/imageuploader.component";
 
 @Component({
-  selector: "projectform",
+  selector: "experienceform",
   standalone: true,
   imports: [ReactiveFormsModule, ImageuploaderComponent],
-  templateUrl: "./projectform.component.html",
-  styleUrl: "./projectform.component.scss"
+  templateUrl: "./experienceform.component.html",
+  styleUrl: "./experienceform.component.scss"
 })
-export class ProjectformComponent {
+export class ExperienceformComponent {
   constructor(
     private cookieService: SsrCookieService,
     private fb: FormBuilder,
@@ -24,14 +24,14 @@ export class ProjectformComponent {
   submitted: boolean;
   postSuccess: boolean;
   token: string;
-  image: string;
+  logo: string;
 
   form: FormGroup = new FormGroup({
-    project: new FormControl(""),
-    image: new FormControl(""),
+    title: new FormControl(""),
+    logo: new FormControl(""),
     company: new FormControl(""),
     description: new FormControl(""),
-    url: new FormControl("")
+    period: new FormControl("")
   });
 
   get f(): { [key: string]: AbstractControl } {
@@ -41,21 +41,21 @@ export class ProjectformComponent {
   ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
       this.form = this.fb.group({
-        project: ["", [Validators.required, Validators.pattern("^(?!\\s+$)[a-zA-Z .\\-'()`\u00C0-\u017F]*$")]],
-        image: [""],
+        title: ["", [Validators.required, Validators.pattern("^(?!\\s+$)[a-zA-Z .\\-'()`\u00C0-\u017F]*$")]],
+        logo: [""],
         company: ["", [Validators.required, Validators.pattern("^(?!\\s+$)[a-zA-Z .\\-'()`\u00C0-\u017F]*$")]],
         description: ["", [Validators.required, Validators.pattern("^(?!\\s+$)[a-zA-Z .\\-'()`\u00C0-\u017F]*$")]],
-        url: [""]
+        period: ["", [Validators.required, Validators.pattern("^[A-Za-z]+\\s[0-9]+\\s-\\s[A-Za-z]+\\s[0-9]*")]]
       });
     }
   }
 
   setData() {
-    this.image = this.form.value.image;
+    this.logo = this.form.value.logo;
   }
 
-  supplyImageUrl(image: string) {
-    this.image = image;
+  supplyLogoUrl(logo: string) {
+    this.logo = logo;
   }
 
   async submitForm(event: any) {
@@ -66,20 +66,20 @@ export class ProjectformComponent {
 
     this.token = this.cookieService.get("token");
 
-    const newProject = await this.api.postNewData(this.token, "project", this.form.value);
+    const newProject = await this.api.postNewData(this.token, "experience", this.form.value);
 
     if (await newProject) {
       this.form.reset();
-      this.image = "";
+      this.logo = "";
       this.postSuccess = true;
       this.submitted = false;
 
-      const projectKey: StateKey<any> = makeStateKey<any>("project");
-      const projectsData = this.transferState.get(projectKey, null);
+      const experienceKey: StateKey<any> = makeStateKey<any>("experience");
+      const experiencesData = this.transferState.get(experienceKey, null);
 
-      if (projectsData) {
-        const newProjectsData = [newProject, ...projectsData];
-        this.transferState.set(projectKey, newProjectsData);
+      if (experiencesData) {
+        const newProjectsData = [newProject, ...experiencesData];
+        this.transferState.set(experienceKey, newProjectsData);
       }
     }
   }

@@ -1,5 +1,5 @@
 import { CommonModule } from "@angular/common";
-import { Component, Input, OnChanges, OnInit } from "@angular/core";
+import { Component, Input } from "@angular/core";
 import { ProjectData } from "../../interfaces/interfaces";
 
 @Component({
@@ -9,10 +9,6 @@ import { ProjectData } from "../../interfaces/interfaces";
   templateUrl: "./projects.component.html",
   styleUrl: "./projects.component.scss"
 })
-export class ProjectsComponent implements OnChanges {
+export class ProjectsComponent {
   @Input() data: ProjectData[];
-
-  ngOnChanges(): void {
-    if (this.data) this.data = this.data.reverse();
-  }
 }
