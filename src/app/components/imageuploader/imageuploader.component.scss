@@ -1,3 +1,14 @@
 button {
   margin-left: 15%;
+  font-weight: bold;
+  color: white;
+  background-color: var(--accent-color);
+  border: solid 2px var(--accent-color);
+  border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: grey;
+    box-shadow: 3px 3px 5px grey;
+  }
 }

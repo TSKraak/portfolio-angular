@@ -44,15 +44,17 @@
     font-weight: bold;
     font-size: 1rem;
     width: 8rem;
-    background-color: var(--button-color);
-    border: solid 2px var(--accent-color2);
+    color: white;
+    background-color: var(--accent-color);
+    border: solid 2px var(--accent-color);
     border-radius: 8px;
     height: 2rem;
   }
 
   button:hover {
     cursor: pointer;
-    background-color: var(--accent-color2);
+    background-color: grey;
+    box-shadow: 3px 3px 5px grey;
   }
 
   &__project {
